@@ -1,7 +1,7 @@
 <script>
 $.getJSON("{{ '/data/subjects.json' | relative_url }}", function(json){
     /* set the min count for subject terms, too many terms = slow page load! */
-    var minSize = 0;
+    var minSize = 2;
     var subjectTerms = json.subjects.filter(function(x) { return x.count > minSize; });
     var counts = subjectTerms.map(function(obj){ return obj.count; });
     var countMax = counts.reduce(function(a, b) { return Math.max(a, b); });
@@ -25,8 +25,8 @@ $.getJSON("{{ '/data/subjects.json' | relative_url }}", function(json){
         var item;
         for (i = 0; i < array.length; i++) {
             var size = mapSize(array[i].count)
-            item = '<a class="btn btn-outline-secondary m-1 wrd tagcloud' + size + '" href="' + array[i].link + '">' + array[i].subject + '</a>';
-            cloud.innerHTML += item;
+            item = '<a class="btn btn-outline-secondary m-1 wrd tagcloud' + size + '" href="' + array[i].link + '">' + array[i].subject + ' ('+ array[i].count +')</a>';
+            cloud.innerHTML += item; 
         }
     }
     makeGrid(subjectTerms);
