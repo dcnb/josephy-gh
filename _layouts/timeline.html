@@ -27,10 +27,13 @@ layout: page
   {% for year in uniqueYears %}
   <tr>
     <th><h3 id="{{ year }}">{{ year }}</h3></th>
-    <td>
+    <td><div class="row">
     {% for item in items %}{% if item.date contains year %}
-      <a href="{{ '/browse/item.html' | relative_url | append: '?id=' | append: item.indexid }}" ><img class="lazyload img-thumbnail m-1" data-original="{{ item.indexid | append: '_sm.jpg' | prepend: '/objects/thumbs/' | relative_url }}" alt="{{ item.title | escape }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}"/></a>
-    {% endif %}{% endfor %}
+      <!--<a href="{{ '/browse/item.html' | relative_url | append: '?id=' | append: item.indexid }}" ><img class="lazyload img-thumbnail m-1" data-original="{{ item.indexid | append: '_sm.jpg' | prepend: '/objects/thumbs/' | relative_url }}" alt="{{ item.title | escape }}" data-toggle="tooltip" data-placement="bottom" title="{{ item.title | escape }} | {{ item.date | escape }}"/></a>-->
+      <div class="col-md-3 card"><h3><a href="{{ '/browse/item.html' | relative_url | append: '?id=' | append: item.indexid }}" >{{ item.title | escape }}</a></h3>
+      <p>{{ item.date | escape }}</p>
+      <p>{{ item.description | truncatewords: 10 }}</p></div>
+    {% endif %}{% endfor %}</div>
     </td>
   </tr>
   {% endfor %}
