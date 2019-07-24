@@ -27,7 +27,7 @@ layout: page
                 <img class="card-img-top lazyload" {% if forloop.index < 5 %}src="{{ item.indexid | append: '_sm.jpg' | prepend: '/objects/thumbs/' | relative_url }}"{% else %}data-original="{{ item.indexid | append: '_sm.jpg' | prepend: '/objects/thumbs/' | relative_url }}"{% endif %} alt="Image of {{ item.title | escape }}">
             </a>-->
             <div class="card-body text-center search">
-                <h3 class="card-title">{{ item.title }}</h3>
+                <h3 class="card-title"><a href="{{ '/browse/item.html' | absolute_url | append: '?id=' | append: item.indexid }}" title="link to {{ item.title | escape }}">{{ item.title }}</a></h3>
                 <p class="card-text">
                     {%- assign extension = item.format | strip | split: '/' | last | downcase -%}
                     <small>Type: <a href="{{ extension | prepend: '/browse/#' | relative_url }}" class="filter">{{ extension | upcase }} <span class="far {% if item.format contains 'image' %}fa-image{% elsif item.format contains 'audio' %}fa-file-audio{% elsif item.format contains 'video' %}fa-file-video{%else%}fa-file{% endif %}"></span></a></small>
@@ -45,6 +45,7 @@ layout: page
                     {% unless forloop.last %}<br>{% endunless %}  
                     {% endif %}{% endif %}{% endfor %}
                 </p>
+                <hr />
                 <p>
                     <a href="{{ '/browse/item.html' | absolute_url | append: '?id=' | append: item.indexid }}" class="btn btn-sm btn-info" title="link to {{ item.title | escape }}">View Item</a>
                 </p>

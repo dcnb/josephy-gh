@@ -15,9 +15,9 @@
         var itemTitle = record.title;
         document.getElementById("bc-title").innerHTML = itemTitle;
         document.getElementById("item-title").innerHTML = itemTitle;
-        var itemImage = '<img class="img-fluid img-thumbnail" src="{{ "/objects/thumbs/" | relative_url }}' + queryString + '_sm.jpg" alt="item thumbnail">';
+        var itemImage = '<iframe width="280" height="157" src="https://www.youtube.com/embed/' + record.filename + '" frameborder="0" allow="accelerometer;  encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
         document.getElementById("item-image").innerHTML = itemImage;
-        var itemLink = '<a href="{{ "/objects/" | absolute_url }}' + record.filename + '" target="_blank" class="btn btn-primary" title="Object download">Download Object</a>';
+        var itemLink = '<a href="' + record.identifier + '" target="_blank" class="btn btn-primary" title="Object download">Link to Original Item</a>';
         document.getElementById("item-link").innerHTML = itemLink;
         var fields = '<table class="table">' + {% for f in fields %}'<tr><th scope="row" class="field">{{ f.display-name }}:</th> <td class="field-value">' + record.{{ f.field }} + '</td></tr>' + {% endfor %}'</table>';
         document.getElementById("item-metadata").innerHTML = fields;
